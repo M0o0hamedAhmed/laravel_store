@@ -2,3 +2,4 @@
         data-id="{{$item->id}}" data-title="{{$item->name}}">
      <i class="fas fa-trash"></i>
 </button>
+

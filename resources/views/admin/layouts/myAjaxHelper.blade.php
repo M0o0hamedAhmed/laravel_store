@@ -85,8 +85,9 @@
                     '_token': "{{csrf_token()}}",
                     'id': id,
                 },
-                success: function (data) {
-                    if (data.status === 200) {
+                success: function (data, textStatus, jqXHR) {
+                    let status = jqXHR.status;
+                    if (status === 200) {
                         $("#dismiss_delete_modal")[0].click();
                         $('#dataTable').DataTable().ajax.reload();
                         toastr.success(data.message)
@@ -187,9 +188,10 @@
                     $('#updateButton').html('<span class="spinner-border spinner-border-sm mr-2" ' +
                         ' ></span> <span style="margin-left: 4px;">انتظر ..</span>').attr('disabled', true);
                 },
-                success: function (data) {
+                success: function (data, textStatus, jqXHR) {
                     $('#updateButton').html(`تعديل`).attr('disabled', false);
-                    if (data.status == 200) {
+                    let status = jqXHR.status;
+                    if (status === 200) {
                         $('#dataTable').DataTable().ajax.reload();
                         toastr.success('تم التعديل بنجاح');
                     } else

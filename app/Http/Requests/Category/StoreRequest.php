@@ -24,7 +24,9 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'required',
-//            'parent_id' => 'nullable|exists:'.Category::getTableName().',id'
+            'description' => 'nullable',
+            'image' => 'nullable',
+            'parent_id' => 'nullable|exists:'.Category::getTableName().',id'
         ];
     }
 }

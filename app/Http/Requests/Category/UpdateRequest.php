@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Category;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -21,8 +22,12 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('category');
         return [
-           'name' => 'required'
+           'name' => 'required|unique:categories,name,'.$id,
+            'description' => 'nullable',
+            'image' => 'nullable',
+            'parent_id' => 'nullable|exists:'.Category::getTableName().',id'
         ];
     }
 }
