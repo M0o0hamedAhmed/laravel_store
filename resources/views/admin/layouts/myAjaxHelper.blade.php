@@ -86,7 +86,7 @@
                     'id': id,
                 },
                 success: function (data, textStatus, jqXHR) {
-                    let status = jqXHR.status;
+                    let status = jqXHR.status
                     if (status === 200) {
                         $("#dismiss_delete_modal")[0].click();
                         $('#dataTable').DataTable().ajax.reload();

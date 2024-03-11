@@ -44,10 +44,4 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    protected $connection = 'mysql';
-    protected $table = 'users';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-    public  $incrementing= true;
-    public  $timestamps= true;
 }

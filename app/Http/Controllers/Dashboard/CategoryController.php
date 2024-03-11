@@ -62,7 +62,7 @@ class CategoryController extends BaseController
     public function create()
     {
         $categories = Category::latest()->get();
-        return view($this->classView . 'parts.edit',compact('categories'))->render();
+        return view($this->classView . 'parts.form',compact('categories'))->render();
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoryController extends BaseController
     public function edit(Category $category)
     {
         $categories = Category::latest()->get()->except($category->id);
-        return view($this->classView . '.parts.edit', compact('category','categories'));
+        return view($this->classView . '.parts.form', compact('category','categories'));
     }
 
     /**
@@ -102,6 +102,9 @@ class CategoryController extends BaseController
     {
         $data = $request->validated();
         try {
+            if ($request->image) {
+                $data['image'] = $request->image->store('categories', 'public');
+            }
             Category::query()->whereId($id)->update($data);
             Log::info("Update Category: category updated successfully with id {$id} by user id " . Auth::id() . ' and  name is ' . Auth::user()->name);
            return $this->sendResponse();

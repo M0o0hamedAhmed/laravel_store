@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:'.Category::getTableName().',name',
             'description' => 'nullable',
             'image' => 'nullable',
             'parent_id' => 'nullable|exists:'.Category::getTableName().',id'
